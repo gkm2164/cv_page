@@ -21,10 +21,14 @@ function App() {
         <h1>Gyeongmin Go</h1>
         <button onClick={() => expand()}>Expand All</button>
         <button onClick={() => collapse()}>Collapse All</button>
-        <Section node={careers["work-experiences"]} />
-        <Section node={careers["opensource-contributions"]} />
-        <Section node={careers["educations"]} />
-        <Section node={careers["publications"]} />
+        <Section key={"work-experiences"}
+                 node={careers["work-experiences"]}/>
+        <Section key={"opensource-contributions"}
+                 node={careers["opensource-contributions"]}/>
+        <Section key={"educations"}
+                 node={careers["educations"]}/>
+        <Section key={"publications"}
+                 node={careers["publications"]}/>
       </Provider>
     </div>
   );
