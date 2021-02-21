@@ -1,4 +1,9 @@
+* {
+}
+
 .company {
+  width: 100%;
+
   .companyName {
     font-weight: bold;
   }
@@ -11,3 +16,22 @@
   }
 }
 
+.sectionHeader {
+  width: 100%;
+  box-sizing: border-box;
+  clear: both;
+
+  h2 {
+    float: left;
+  }
+
+  span {
+    float: right;
+  }
+}
+
+.section {
+  width: 100%;
+  display: block;
+  clear: both;
+}

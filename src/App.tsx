@@ -6,6 +6,11 @@ import store from './store';
 import {COLLAPSE_SECTION, EXPAND_SECTION} from "./store/section/actions";
 import careers from "./careers";
 
+import {FaChevronDown, FaChevronUp} from 'react-icons/fa';
+import {Button} from "react-bootstrap";
+import "bootstrap/scss/bootstrap.scss";
+import {Bio} from "./Bio";
+
 function App() {
   const expand = () => {
     store.dispatch({type: EXPAND_SECTION});
@@ -17,14 +22,12 @@ function App() {
 
   const careerNodes = Object.keys(careers);
   return (
-    <div>
-      <Provider store={store}>
-        <h1>Gyeongmin Go</h1>
-        <button onClick={() => expand()}>Expand All</button>
-        <button onClick={() => collapse()}>Collapse All</button>
-        {careerNodes.map(key => <Section key={key} node={careers[key]}/>)}
-      </Provider>
-    </div>
+    <Provider store={store}>
+      <Bio />
+      <Button onClick={() => expand()}><FaChevronDown/>Expand all</Button>
+      <Button onClick={() => collapse()}><FaChevronUp/>Collapse all</Button>
+      {careerNodes.map(key => <Section key={key} node={careers[key]}/>)}
+    </Provider>
   );
 }
 

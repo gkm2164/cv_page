@@ -4,6 +4,8 @@ import {AppStates} from "./store";
 import styles from "./section.module.scss";
 import {Col, Container, Row} from "react-bootstrap";
 import {CareerNode} from "./types";
+import {Button} from "react-bootstrap";
+import {FaChevronDown, FaChevronUp} from "react-icons/fa";
 
 interface SectionProp {
   node: CareerNode
@@ -33,7 +35,7 @@ const Section: React.FC<Prop> = ({isFolded, node}) => {
           </Col>
         </Row>
         <Row>
-          <Col />
+          <Col/>
           <Col>
             <span className={styles.tenure}>{entry.tenure}</span>
           </Col>
@@ -41,14 +43,14 @@ const Section: React.FC<Prop> = ({isFolded, node}) => {
       </Container>
       <span className={styles.desc}>{entry.desc}</span>
       <span>{entry.team}</span>
-      <div>
+      <div style={{width: "100%"}}>
         <h4>Projects</h4>
         <ul>
-          {entry.projects.map((prj: any) =>
-            <li>
+          {entry.projects.map((prj: any, idx: number) =>
+            <li key={idx}>
               <b>{prj.title}</b>,{prj.period}
               <ul>
-                {prj.descriptions.map((str: string) => <li>{str}</li>)}
+                {prj.descriptions.map((str: string, idx: number) => <li key={idx}>{str}</li>)}
               </ul>
             </li>
           )}
@@ -57,12 +59,17 @@ const Section: React.FC<Prop> = ({isFolded, node}) => {
     </div>
   );
 
-  return <>
-    <h2>{title}</h2>
-    <button onClick={() => setIsFoldedLocal(false)}>Expand</button>
-    <button onClick={() => setIsFoldedLocal(true)}>Collapse</button>
+  return <div className={styles.section}>
+    <div className={styles.sectionHeader} style={{width: "100%"}}>
+      <h2 style={{width: "100%"}}>{title}</h2>
+      <span>
+      {isFoldedLocal ?
+        <Button onClick={() => setIsFoldedLocal(false)}><FaChevronDown/></Button> :
+        <Button onClick={() => setIsFoldedLocal(true)}><FaChevronUp/></Button>}
+      </span>
+    </div>
     {!isFoldedLocal && entries.map(entry => renderCompany(entry))}
-  </>
+  </div>
 }
 
 const mapStateToProps = ({sections}: AppStates, ownProps: SectionProp) => {
