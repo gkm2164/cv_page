@@ -1,16 +1,25 @@
 import {CareerEntry} from "./types";
 
-export const careers: CareerEntry = {
+const careers: CareerEntry = {
   "work-experiences": {
     "id": "work-experiences",
     "title": "Work Experiences",
     "entries": [
       {
-        "title": "Amazon, Canada",
+        "company": "Amazon",
+        "location": "Canada",
         "tenure": "Dec. 2019 ~ Present",
         "desc": "Our team manages vendor central which makes the vendors to register their products through web forms. Recently, our team migrated old HTML UI into React UI form.",
         "team": "Seller Central Experiences, SLICE team",
         "projects": [
+          {
+            "title": "Zero-touch marketplace",
+            "period": "Feb. 2020 ~ Apr. 2020",
+            "descriptions": [
+              "Remove hardcoded marketplace ID and migrate to API which manages all marketplace metadata",
+              "Implemented class usage retrievers(using Javassist) to automatically identifying and documenting hardcoded spots"
+            ],
+          },
           {
             "title": "Zero-touch marketplace",
             "period": "Feb. 2020 ~ Apr. 2020",
@@ -39,3 +48,5 @@ export const careers: CareerEntry = {
     "entries": [],
   }
 };
+
+export default careers;

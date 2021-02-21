@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from "react";
 import {connect, ConnectedProps} from "react-redux";
-import {CareerNode} from "./types";
 import {AppStates} from "./store";
+import styles from "./section.module.scss";
+import {Col, Container, Row} from "react-bootstrap";
+import {CareerNode} from "./types";
 
 interface SectionProp {
-  node: CareerNode;
+  node: CareerNode
 }
 
 type PropFromRedux = ConnectedProps<typeof connector>;
@@ -20,10 +22,24 @@ const Section: React.FC<Prop> = ({isFolded, node}) => {
   useEffect(() => setIsFoldedLocal(isFolded), [isFolded]);
 
   const renderCompany = (entry: any) => (
-    <div>
-      <h3>{entry.title}</h3>
-      <span>{entry.tenure}</span>
-      <span>{entry.desc}</span>
+    <div className={styles.company}>
+      <Container>
+        <Row>
+          <Col>
+            <span className={styles.companyName}>{entry.company}</span>
+          </Col>
+          <Col>
+            <span className={styles.location}>{entry.location}</span>
+          </Col>
+        </Row>
+        <Row>
+          <Col />
+          <Col>
+            <span className={styles.tenure}>{entry.tenure}</span>
+          </Col>
+        </Row>
+      </Container>
+      <span className={styles.desc}>{entry.desc}</span>
       <span>{entry.team}</span>
       <div>
         <h4>Projects</h4>
@@ -46,7 +62,6 @@ const Section: React.FC<Prop> = ({isFolded, node}) => {
     <button onClick={() => setIsFoldedLocal(false)}>Expand</button>
     <button onClick={() => setIsFoldedLocal(true)}>Collapse</button>
     {!isFoldedLocal && entries.map(entry => renderCompany(entry))}
-    <hr/>
   </>
 }
 

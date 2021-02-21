@@ -4,7 +4,7 @@ import Section from "./Section";
 import {Provider} from "react-redux";
 import store from './store';
 import {COLLAPSE_SECTION, EXPAND_SECTION} from "./store/section/actions";
-import {careers} from "./careers";
+import careers from "./careers";
 
 function App() {
   const expand = () => {
@@ -15,20 +15,14 @@ function App() {
     store.dispatch({type: COLLAPSE_SECTION});
   }
 
+  const careerNodes = Object.keys(careers);
   return (
     <div>
       <Provider store={store}>
         <h1>Gyeongmin Go</h1>
         <button onClick={() => expand()}>Expand All</button>
         <button onClick={() => collapse()}>Collapse All</button>
-        <Section key={"work-experiences"}
-                 node={careers["work-experiences"]}/>
-        <Section key={"opensource-contributions"}
-                 node={careers["opensource-contributions"]}/>
-        <Section key={"educations"}
-                 node={careers["educations"]}/>
-        <Section key={"publications"}
-                 node={careers["publications"]}/>
+        {careerNodes.map(key => <Section key={key} node={careers[key]}/>)}
       </Provider>
     </div>
   );
